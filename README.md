@@ -1,4 +1,6 @@
 # La-baguette
+![Virtual Reality Baguette Cutting Task](https://raw.githubusercontent.com/med-material/La-baguette/master/La-baguette-image.png)
+
 VR application with HTC vive and pupil lab eye-tracker
 Unity (C# script)
 
