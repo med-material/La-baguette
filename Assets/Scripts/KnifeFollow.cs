@@ -11,6 +11,6 @@ public class KnifeFollow : MonoBehaviour
     void Update()
     {
         gameObject.transform.position = controller.transform.position;
-        gameObject.transform.eulerAngles = new Vector3(180, 90 + table.transform.eulerAngles.y, 90);
+        gameObject.transform.eulerAngles = new Vector3(180, 90 + table.transform.eulerAngles.y, 0);
     }
 }

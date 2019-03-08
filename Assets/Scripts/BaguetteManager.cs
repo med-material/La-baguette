@@ -52,7 +52,7 @@ public class BaguetteManager : MonoBehaviour
     [SerializeField]
     private Text trialNumberText;
     private string trialNumberTextTemplate;
-    private int trialNumber = 0; 
+    private int trialNumber = 0;
     private Cutter cutter;
     public float cutPercentage = -1f;
 
@@ -103,14 +103,14 @@ public class BaguetteManager : MonoBehaviour
         testTimerTextTemplate = testTimerText.text;
 
         baguetteObjectSizes = new BaguetteObjectSizes();
-        baguetteObjectSizes.small = new Vector3(0.05f, 0.25f, 0.05f);
-        baguetteObjectSizes.medium = new Vector3(0.1f, 0.5f, 0.1f);
-        baguetteObjectSizes.large = new Vector3(0.15f, 1f, 0.15f);
+        baguetteObjectSizes.small = new Vector3(0.75f, 0.75f, 0.75f);
+        baguetteObjectSizes.medium = new Vector3(1f, 1f, 1f);
+        baguetteObjectSizes.large = new Vector3(1.25f, 1.25f, 1.25f);
         Center = gameObject.transform.localPosition;
         isBaguette = false;
         trialNumberTextTemplate = trialNumberText.text;
         trialNumberText.text = string.Format(trialNumberTextTemplate, trialNumber.ToString());
-        
+
         if (mirrorEffect == MirrorEffect.Off) {
                 cutter = GameObject.Find("LeftKnife").GetComponent<Cutter>();
         } else{
@@ -156,7 +156,10 @@ public class BaguetteManager : MonoBehaviour
                 UnityEngine.Random.Range(-0.34f, 0.24f),
                 -0.0822f
             );
-            currentBaguette.transform.localEulerAngles = new Vector3(0, 0, 90);
+            currentBaguette.transform.localEulerAngles = new Vector3(180, 0, 0);
+            baguetteObjectSizes.medium = currentBaguette.transform.localScale;
+            baguetteObjectSizes.small = Vector3.Scale(currentBaguette.transform.localScale, new Vector3(0.75f, 0.75f, 0.75f));
+            baguetteObjectSizes.large = Vector3.Scale(currentBaguette.transform.localScale, new Vector3(1.25f, 1.25f, 1.25f));
             isBaguette = true;
             changeBaguetteSize();
             timer = 0;
@@ -194,7 +197,7 @@ public class BaguetteManager : MonoBehaviour
     }
 
     /// <summary>
-    /// delete the tables first childs that will be either the 2 baguette parts 
+    /// delete the tables first childs that will be either the 2 baguette parts
     /// after the user cut it or the only 1 piece of baguette if he fails
     /// </summary>
     public void NextBaguette()
@@ -331,7 +334,7 @@ public class BaguetteManager : MonoBehaviour
 
     public void PrismOffset_OnValueChanged() {
         float number;
-        
+
         if (Single.TryParse(prismOffsetInputField.text, out number)) {
             prismOffset = number;
         } else if (prismOffsetInputField.text == "") {
@@ -339,6 +342,6 @@ public class BaguetteManager : MonoBehaviour
         } else {
             prismOffsetInputField.text = prismOffset.ToString();
         }
-        
+
     }
 }
