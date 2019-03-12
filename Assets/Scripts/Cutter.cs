@@ -65,8 +65,9 @@ public class Cutter : MonoBehaviour
             cutPosition = new Vector3(transform.position.x, victim.transform.position.y, victim.transform.position.z);
 
             GameObject[] pieces = BLINDED_AM_ME.MeshCut.Cut(victim, cutPosition, victim.transform.right, capMaterial); // -transform.forward
-            pieces[0].transform.position = new Vector3(transform.position.x + 0.025f, transform.position.y, transform.position.z);
-            pieces[1].transform.position = new Vector3(transform.position.x - 0.025f, transform.position.y, transform.position.z);
+            pieces[0].transform.position = new Vector3(transform.position.x + 0.025f, victim.transform.position.y, victim.transform.position.z);
+            pieces[1].transform.position = new Vector3(transform.position.x - 0.025f, victim.transform.position.y, victim.transform.position.z);
+
             float leftBoundsSize = pieces[0].GetComponent<Renderer>().bounds.size.x;
             infoBaguette = InfoBaguette(baguetteBoundsSize, leftBoundsSize);
             leftPercentage = infoBaguette[0];
