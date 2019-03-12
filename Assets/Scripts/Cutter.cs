@@ -56,7 +56,7 @@ public class Cutter : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider collision) {
-        
+
         GameObject victim = collision.gameObject;
         if (!hasRegistered && Time.time < inputRegisterTime + 1f && victim.name == "Baguette(Clone)" )
         {
@@ -64,7 +64,9 @@ public class Cutter : MonoBehaviour
             float baguetteBoundsSize = victim.GetComponent<Renderer>().bounds.size.x;
             cutPosition = new Vector3(transform.position.x, victim.transform.position.y, victim.transform.position.z);
 
-            GameObject[] pieces = BLINDED_AM_ME.MeshCut.Cut(victim, cutPosition, victim.transform.up, capMaterial); // -transform.forward
+            GameObject[] pieces = BLINDED_AM_ME.MeshCut.Cut(victim, cutPosition, victim.transform.right, capMaterial); // -transform.forward
+            pieces[0].transform.position = new Vector3(transform.position.x + 0.025f, transform.position.y, transform.position.z);
+            pieces[1].transform.position = new Vector3(transform.position.x - 0.025f, transform.position.y, transform.position.z);
             float leftBoundsSize = pieces[0].GetComponent<Renderer>().bounds.size.x;
             infoBaguette = InfoBaguette(baguetteBoundsSize, leftBoundsSize);
             leftPercentage = infoBaguette[0];
