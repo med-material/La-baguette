@@ -96,6 +96,9 @@ public class BaguetteManager : MonoBehaviour
 
     private bool hasUploaded = false;
 
+    [SerializeField]
+    private GameObject spawnLocation;     
+
     // Use this for initialization
     void Start()
     {
@@ -150,12 +153,12 @@ public class BaguetteManager : MonoBehaviour
         {
             currentBaguette = Instantiate(spawnObject);
             currentBaguette.transform.SetParent(gameObject.transform);
-            currentBaguette.transform.localPosition =
-            new Vector3(
-                UnityEngine.Random.Range(-0.3f, 0.3f),
-                UnityEngine.Random.Range(-0.34f, 0.24f),
-                this.gameObject.transform.position.z - 0.075f
-            );
+            currentBaguette.transform.localPosition = spawnLocation.transform.localPosition;
+            //new Vector3(
+            //    UnityEngine.Random.Range(-0.3f, 0.3f),
+            //    UnityEngine.Random.Range(-0.34f, 0.24f),
+            //    this.gameObject.transform.position.z - 0.075f
+            //);
             currentBaguette.transform.localEulerAngles = new Vector3(180, 0, 0);
             baguetteObjectSizes.medium = currentBaguette.transform.localScale;
             baguetteObjectSizes.small = Vector3.Scale(currentBaguette.transform.localScale, new Vector3(0.75f, 0.75f, 0.75f));

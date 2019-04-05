@@ -18,7 +18,7 @@ public class CalibrateTable : MonoBehaviour
 
         gameObject.transform.position = cameraPos + cameraDirection * spawnDistance;
         gameObject.transform.position = new Vector3(gameObject.transform.position.x,
-        .8f,
+        0.3f,
         gameObject.transform.position.z);
         gameObject.transform.eulerAngles = new Vector3(90, cameraAngles.y, cameraAngles.z);
     }
